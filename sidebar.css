@@ -1,0 +1,360 @@
+:root {
+    /* Default Dark Theme */
+    --bg-dark: #0f111a;
+    --sidebar-bg: #15192b;
+    --card-bg: #1e2235;
+    --text-primary: #ffffff;
+    --text-secondary: #8b8e99;
+    --accent-blue: #2d60ff;
+    --accent-hover: #1a4dff;
+    --danger: #ff4d4d;
+    --success: #00cc66;
+    --sidebar-width: 260px;
+    --border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] {
+    --bg-dark: #f4f7fe;
+    /* Light grey-blue background */
+    --sidebar-bg: #ffffff;
+    /* White sidebar */
+    --card-bg: #ffffff;
+    /* White cards */
+    --text-primary: #2b3674;
+    /* Dark blue text */
+    --text-secondary: #a3aed0;
+    /* Grey text */
+    --border-color: #e0e5f2;
+    --accent-blue: #4318ff;
+    /* Slightly different blue for light mode */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Update Sidebar border for light mode visibility */
+/* Update Sidebar based on open/closed state */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid var(--border-color);
+    z-index: 1000;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* Default state handled by JS classes */
+}
+
+/* Ensure brand area is opaque */
+.sidebar-brand {
+    background-color: var(--sidebar-bg);
+    position: relative;
+    z-index: 1001;
+}
+
+.sidebar.closed {
+    transform: translateX(-100%);
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+/* Main Content Adjustment */
+.main-content {
+    margin-left: var(--sidebar-width);
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.sidebar-open {
+    margin-left: var(--sidebar-width);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        /* On mobile, sidebar slides over content */
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar.closed {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        /* Content stays full width on mobile */
+    }
+
+    .navbar {
+        padding-left: 20px;
+        /* Adjust padding if needed */
+    }
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.brand-circle {
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-blue);
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+.sidebar-brand h2 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.menu-group {
+    margin-bottom: 30px;
+}
+
+.menu-label {
+    color: var(--text-secondary);
+    font-size: 0.6875rem;
+    /* 11px */
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    text-transform: uppercase;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 12px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover,
+.menu-item.active {
+    background-color: var(--accent-blue);
+    color: white;
+    /* box-shadow: 0 5px 15px rgba(45, 96, 255, 0.3); */
+    /* Optional in light mode to avoid harsh logic */
+}
+
+/* Ensure text in active item is white even in light mode */
+[data-theme="light"] .menu-item:hover,
+[data-theme="light"] .menu-item.active {
+    color: #ffffff;
+}
+
+.menu-item i {
+    width: 24px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    font-size: 0.875rem;
+    /* 14px */
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 77, 77, 0.1);
+}
+
+.logout-btn i {
+    margin-right: 10px;
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] {
+    --bg-dark: #f4f7fe;
+    /* Light grey-blue background */
+    --sidebar-bg: #ffffff;
+    /* White sidebar */
+    --card-bg: #ffffff;
+    /* White cards */
+    --text-primary: #2b3674;
+    /* Dark blue text */
+    --text-secondary: #a3aed0;
+    /* Grey text */
+    --border-color: #e0e5f2;
+    --accent-blue: #4318ff;
+    /* Slightly different blue for light mode */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Update Sidebar border for light mode visibility */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid var(--border-color);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+/* ... (rest of sidebar styles remain similar, assuming vars are used) ... */
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.brand-circle {
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-blue);
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+.sidebar-brand h2 {
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.menu-group {
+    margin-bottom: 30px;
+}
+
+.menu-label {
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    text-transform: uppercase;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 12px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover,
+.menu-item.active {
+    background-color: var(--accent-blue);
+    color: white;
+    /* box-shadow: 0 5px 15px rgba(45, 96, 255, 0.3); */
+    /* Optional in light mode to avoid harsh logic */
+}
+
+/* Ensure text in active item is white even in light mode */
+[data-theme="light"] .menu-item:hover,
+[data-theme="light"] .menu-item.active {
+    color: #ffffff;
+}
+
+.menu-item i {
+    width: 24px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 77, 77, 0.1);
+}
+
+.logout-btn i {
+    margin-right: 10px;
+}

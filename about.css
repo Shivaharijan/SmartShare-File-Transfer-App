@@ -1,0 +1,155 @@
+/* stylesheet for the about page */
+
+/* the main section of the page */
+div.about {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; This was pushing content too far apart */
+    /* Push content to edges */
+    align-items: center;
+    max-width: 90vw;
+    min-height: 80vh;
+    /* Reduced slightly to ensure it fits well */
+    /* Take up almost full height to push bottom info down */
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    /* Space above footer */
+}
+
+/* Container for the main top content */
+.about-content {
+    flex: 1;
+    /* Take up available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* keep title and desc centered */
+    /* Center content vertically */
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2em;
+    /* Ensure gap between main text and bottom info */
+}
+
+/* the main heading of the about section */
+.about h1.about-heading {
+    font-family: "Poppins", sans-serif;
+    font-size: 2.7em;
+    line-height: 1.2em;
+    font-weight: 500;
+    color: #08cfbe;
+    text-align: center;
+    width: 100%;
+}
+
+/* the paragraphs in the about section */
+.about section.main-text {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1em;
+    /* Reduced from 2em */
+}
+
+.about-text p.about-p {
+    font-family: "Poppins", sans-serif;
+    font-size: 1em;
+    line-height: 1.5em;
+    font-weight: 400;
+    color: #08a1c4;
+    width: 80%;
+    margin: 10px auto;
+    /* Center p tags */
+    text-align: center;
+    /* Center text by default for this layout */
+}
+
+/* Bottom info section */
+.about-bottom-info {
+    width: 100%;
+    text-align: center;
+    /* Push to bottom if flex space allows, though justify-content: space-between does this too */
+    padding-bottom: 10px;
+    /* Space from real footer */
+    /* It will sit at the bottom naturally if about-content flexes */
+}
+
+.about-bottom-info p.about-p {
+    width: 100%;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+
+/* to style the font icon present in the desktop view of the about section */
+i.lni-question-circle {
+    font-size: 12em;
+    color: #08cfbe;
+    align-self: center;
+    /* Alignment fix */
+    margin-bottom: 0.3em;
+    display: none;
+}
+
+@media screen and (min-width: 769px) {
+    i.lni-question-circle {
+        display: block;
+        margin-left: 20px;
+    }
+}
+
+
+/* giving a different font color to highlight the supported file types */
+span.file-type {
+    color: #02b875;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+/* style the horizontal rule present below the heading */
+hr.about-hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0), #08cfbe, rgba(0, 0, 0, 0));
+    width: 50%;
+    /* standard width */
+    margin: 10px auto;
+}
+
+/* media queries for the mobile screens */
+@media screen and (max-width: 768px) {
+
+    div.about {
+        max-width: 95vw;
+        min-height: 80vh;
+    }
+
+    .about h1.about-heading {
+        font-size: 1.8em;
+        line-height: 1.2em;
+        margin: 1em 0;
+    }
+
+    .about section.main-text {
+        flex-direction: column;
+        margin-top: 0;
+    }
+
+    .about-text p.about-p {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    i.lni-question-circle {
+        display: none;
+    }
+
+    /* Ensure bottom info doesn't get squashed */
+    .about-bottom-info {
+        margin-top: 2em;
+    }
+}
